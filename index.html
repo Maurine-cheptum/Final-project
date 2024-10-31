@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.5">
+    <title>MedConnect - Telemedicine App</title>
+
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background: #007BFF;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header img {
+            max-width: 150px;
+            margin: 10px 0;
+        }
+
+        nav {
+            background: #0056b3;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        main {
+            flex: 3;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        aside.sidebar {
+            flex: 1;
+            margin-left: 20px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            border-bottom: 2px solid #007BFF;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            color: #007BFF;
+        }
+
+        ul {
+            margin: 10px 0;
+        }
+
+        /* Form Styling */
+        form {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="date"],
+        input[type="tel"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            aside.sidebar {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MedConnect</h1>
+        <img src="Medconnect logo.png" alt="MedConnect Logo">
+    </header>
+
+    <nav>
+        <ul class="nav-menu">
+            <li><a href="#Home">Home</a></li>
+            <li><a href="#Services">Services</a></li>
+            <li><a href="#Contact">Contact</a></li>
+            <li><a href="#SignIn">Sign In</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <main>
+            <!-- Home Section -->
+            <section id="Home">
+                <h2>Welcome to MedConnect</h2>
+                <p>MedConnect is your 24/7 online healthcare platform, providing access to certified doctors and medical professionals from the comfort of your home. Whether you need a quick consultation, prescription refills, or follow-up care, we are here to ensure you receive the best medical attention anytime, anywhere.</p>
+                <p>Our mission is to make healthcare accessible, convenient, and affordable through advanced telemedicine solutions.</p>
+            </section>
+
+            <!-- Services Section -->
+            <section id="Services">
+                <h2>Our Services</h2>
+                <ul>
+                    <li><strong>Online Consultations:</strong> Speak to licensed doctors via video, phone, or chat at your convenience.</li>
+                    <li><strong>Prescription Services:</strong> Get your prescriptions renewed without needing an in-person visit.</li>
+                    <li><strong>Specialist Referrals:</strong> Access top specialists in various fields such as dermatology, cardiology, pediatrics, and more.</li>
+                    <li><strong>24/7 Virtual Care:</strong> Immediate assistance for urgent care needs or ongoing medical concerns.</li>
+                    <li><strong>Medical History Management:</strong> Keep track of your health records, prescriptions, and consultation notes all in one place.</li>
+                </ul>
+                <p><a href="#SignIn">Sign up today</a> and get the medical care you deserve from wherever you are.</p>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="Contact">
+                <h2>Contact Us</h2>
+                <p>If you have any questions or need assistance, feel free to get in touch with us:</p>
+                <ul>
+                    <li><strong>Email:</strong> support@medconnect.com</li>
+                    <li><strong>Phone:</strong> 1-800-123-4567</li>
+                    <li><strong>Address:</strong> 123 Health Street, Wellness City, HC 56789</li>
+                </ul>
+                <form id="contactForm" onsubmit="return validateContact()">
+                    <div class="error" id="contactError"></div>
+                    <label for="message">Send us a message:</label>
+                    <textarea id="message" name="message" rows="4" cols="50" placeholder="Write your message here..." required></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </section>
+
+            <!-- Sign In Section -->
+            <section id="SignIn">
+                <h2>Sign In</h2>
+                <p>If you're already a member, sign in to access your account and medical records.</p>
+                <form id="signinForm" action="/signin" method="post" onsubmit="return validateSignIn()">
+                    <div class="error" id="signinError"></div>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your full name" required>
+                    
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    
+                    <button type="submit">Sign In</button>
+                </form>
+            </section>
+
+            <!-- Patient Sign-Up Section -->
+            <section id="signup" class="signup-form">
+                <h2>Patient Sign-Up</h2>
+                <form id="signupForm" onsubmit="return validateSignUp()">
+                    <div class="error" id="signupError"></div>
+                    
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+                    <label for="gender">Gender:</label>
+                    <select id="gender" name="gender" required>
+                        <option value="">Select your gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                    <label for="signupPassword">Password:</label>
+                    <input type="password" id="signupPassword" name="password" placeholder="Enter your password" required>
+
+                    <label for="confirmPassword">confirmPassword:</label>
+                    <input type="password" id="confirmPassword" name="confirmpassword" placeholder="Enter your password" required>
+
+
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" placeholder="Enter your address" required>
+
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" required>
+
+                    <button type="submit">Sign Up</button>
+                </form>
+            </section>
+        </main>
+
+        <aside class="sidebar">
+            <input type="search" placeholder="Search..." aria-label="Search">
+            <h3>Useful Links</h3>
+            <ul>
+                <li><a href="#Home">MedConnect Overview</a></li>
+                <li><a href="#Services">Our Services</a></li>
+                <li><a href="#Contact">Contact Us</a></li>
+                <li><a href="#SignIn">Sign In</a></li>
+            </ul>
+        </aside>
+    </div>
+    
+    <script>
+        function validateContact() {
+            const message = document.getElementById("message").value;
+            const errorDiv = document.getElementById("contactError");
+    
+            errorDiv.textContent = ""; // Clear previous error message
+    
+            if (message.trim() === "") {
+                errorDiv.textContent = "Message cannot be empty.";
+                return false; // Prevent form submission
+            }
+            return true; // Allow form submission
+        }
+    
+        function validateSignIn() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const errorDiv = document.getElementById("signinError");
+    
+            errorDiv.textContent = ""; // Clear previous error message
+    
+            if (username.trim() === "" || password.trim() === "") {
+                errorDiv.textContent = "All fields are required.";
+                return false; // Prevent form submission
+            }
+            return true; // Allow form submission
+        }
+    
+        async function validateSignUp() {
+            const firstName = document.getElementById("firstName").value;
+            const lastName = document.getElementById("lastName").value;
+            const phone = document.getElementById("phone").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("signupPassword").value;
+            const confirmpassword = document.getElementById("signupPassword").value;
+            const address = document.getElementById("address").value;
+            const dob = document.getElementById("dob").value;
+            const gender = document.getElementById("gender").value;
+            const errorDiv = document.getElementById("signupError");
+    
+            errorDiv.textContent = ""; // Clear previous error message
+    
+            // Check required fields
+            if (firstName.trim() === "" || lastName.trim() === "" || phone.trim() === "" ||
+                email.trim() === "" || password.trim() === "" || address.trim() === "" ||
+                dob.trim() === "" || gender.trim() === "") {
+                errorDiv.textContent = "All fields are required.";
+                return false; // Prevent form submission
+            }
+    
+            // Simple email validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[a-z]{2,3}$/;
+            if (!email.match(emailPattern)) {
+                errorDiv.textContent = "Please enter a valid email address.";
+                return false; // Prevent form submission
+            }
+    
+            const formData = {
+                firstName,
+                lastName,
+                phone,
+                email,
+                password,
+                address,
+                dob,
+                gender
+            };
+           
+            try {
+                // Send data to the server
+                const response = await fetch('http://localhost:3300/patients/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+    
+                // Check if response is OK (status 200-299)
+                if (!response.ok) {
+                    throw new Error('Failed to register patient');
+                }
+    
+                const data = await response.json();
+                alert('New patient created!');
+                return true; // Allow form submission after successful registration
+            } catch (error) {
+                console.error(error.message);
+                alert('An error occurred during registration.');
+                return false; // Prevent form submission
+            }
+        }
+    </script>
+    
+</body>
+</html>
