@@ -198,8 +198,8 @@
                 <p>If you have any questions or need assistance, feel free to get in touch with us:</p>
                 <ul>
                     <li><strong>Email:</strong> support@medconnect.com</li>
-                    <li><strong>Phone:</strong> 1-800-123-4567</li>
-                    <li><strong>Address:</strong> 123 Health Street, Wellness City, HC 56789</li>
+                    <li><strong>Phone:</strong> +254 723920031</li>
+                    <li><strong>Address:</strong> 14750,Nairobi</li>
                 </ul>
                 <form id="contactForm" onsubmit="return validateContact()">
                     <div class="error" id="contactError"></div>
@@ -265,8 +265,49 @@
                     <input type="date" id="dob" name="dob" required>
 
                     <button type="submit">Sign Up</button>
+                    <p><a href="/forgot-password" id="forgotPasswordLink">Forgot Password?</a></p>
+                </form>
+                
+            </section>
+            <section id="Appointments">
+                <h2>Book an Appointment</h2>
+                <form id="appointmentForm" onsubmit="return validateAppointment()">
+                    <label for="doctor">Select Doctor:</label>
+                    <select id="doctor" name="doctor" required>
+                        <option value="">-- Choose Doctor --</option>
+                        <option value="Dr. Lawrence">Dr. Lawrence(Cardiologist)</option>
+                        <option value="Dr. Waswa">Dr. Waswa (Gynecologist)</option>
+                        <option value="Dr. Grace">Dr. Grace (Paediatrician)</option>
+                        <option value="Dr. Ambuko">Dr. Ambuko (Dermatologist)</option>
+                    </select>
+            
+                    <label for="date">Choose Date:</label>
+                    <input type="date" id="date" name="date" required>
+            
+                    <label for="time">Choose Time:</label>
+                    <select id="time" name="time" required>
+                        <option value="">-- Choose Time Slot --</option>
+                        <option value="10:00 AM">10:00 AM</option>
+                        <option value="2:00 PM">2:00 PM</option>
+                    </select>
+            
+                    <button type="submit">Book Appointment</button>
                 </form>
             </section>
+         <script>
+                function validateAppointment() {
+                    const doctor = document.getElementById("doctor").value;
+                    const date = document.getElementById("date").value;
+                    const time = document.getElementById("time").value;
+            
+                    if (!doctor || !date || !time) {
+                        alert("All fields are required!");
+                        return false;
+                    }
+                    alert("Appointment booked successfully!");
+                    return true;
+                }
+            </script>
         </main>
 
         <aside class="sidebar">
@@ -280,7 +321,50 @@
             </ul>
         </aside>
     </div>
+    <aside class="sidebar">
+        <input type="search" placeholder="Search..." aria-label="Search">
+        <h3>Useful Links</h3>
+        <ul>
+            <li><a href="#Home">MedConnect Overview</a></li>
+            <li><a href="#Services">Our Services</a></li>
+            <li><a href="#Contact">Contact Us</a></li>
+            <li><a href="#SignIn">Sign In</a></li>
+        </ul>
     
+        <div style="margin-top: 20px; text-align: center;">
+            <p>Are you sure you want to log out?</p>
+            
+            <!-- Logout Confirmation Form -->
+            <form action="/logout" method="post">
+                <!-- CSRF Token for Security -->
+                <input type="hidden" name="csrf_token" value="your_csrf_token_here">
+                <button type="submit" style="
+                    padding: 10px 20px; 
+                    background-color: #ff4d4d; 
+                    color: white; 
+                    border: none; 
+                    border-radius: 4px; 
+                    cursor: pointer;
+                ">
+                    Yes, Log Out
+                </button>
+            </form>
+        
+            <!-- Cancel and Return to Dashboard Form -->
+            <form action="/dashboard" method="get">
+                <button type="submit" style="
+                    padding: 10px 20px; 
+                    background-color: #4CAF50; 
+                    color: white; 
+                    border: none; 
+                    border-radius: 4px; 
+                    cursor: pointer;
+                ">
+                    Cancel
+                </button>
+            </form>
+        </div>
+        
     <script>
         function validateContact() {
             const message = document.getElementById("message").value;
@@ -323,6 +407,7 @@
     
             errorDiv.textContent = ""; // Clear previous error message
     
+        
             // Check required fields
             if (firstName.trim() === "" || lastName.trim() === "" || phone.trim() === "" ||
                 email.trim() === "" || password.trim() === "" || address.trim() === "" ||
